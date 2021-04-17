@@ -1,0 +1,47 @@
+services:
+  vault:
+    image: vault
+    container_name: universe-simulator-vault
+    restart: always
+    cap_add:
+      - IPC_LOCK
+    command: server
+    environment:
+      - 'VAULT_LOCAL_CONFIG=
+        {
+          "storage": {
+            "file": {
+              "path": "/vault/file"
+            }
+          },
+          "listener": {
+            "tcp": {
+              "address": "0.0.0.0:8200",
+              "tls_disable": true
+            }
+          },
+          "ui": true
+        }'
+    ports:
+      - 8200:8200
+    volumes:
+      - vault-logs:/vault/logs
+      - vault-file:/vault/file
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: universe-simulator-rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+
+volumes:
+  vault-logs:
+  vault-file:
+  rabbitmq:
