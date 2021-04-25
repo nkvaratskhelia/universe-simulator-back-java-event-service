@@ -1,33 +1,62 @@
 = Project setup
 
-== Software
-Run `docker-compose -p universe-simulator up -d` to install all required software (`vault, rabbitmq,
-mongo`).
-
 == Https/TLS
-You need to have a keystore file named `universe-simulator.p12` in your `${HOME}/universe-simulator`
-directory. The certificate in the keystore can be either self-signed or provided by a CA.
+You need to have the following files in your `${HOME}/universe-simulator` directory:
+
+* a keystore file named `universe-simulator.p12`
+* a certificate file named `universe-simulator-cert.pem`
+* a private key file named `universe-simulator-key.pem`
 
 === Keystore
-You can use java's `keytool` utility for working with keystore. To create a keystore file with a
-self-signed certificate, run the following command: `keytool -genkeypair -alias universe-simulator
--keyalg RSA -validity 365 -keystore universe-simulator.p12` and follow the instructions.
+The certificate in the keystore can be either self-signed or provided by a CA. You can use
+`openssql` and java's `keytool` utility for working with keystore. To create all the necessary files,
+follow these steps:
+
+* Create a keystore with a self-signed certificate and a private key: `keytool -genkeypair -v
+-alias universe-simulator -keystore universe-simulator.p12 -keyalg RSA -validity 365
+-ext SAN=dns:localhost,ip:127.0.0.1`
+
+* Extract the certificate from the keystore with:
+`openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-cert.pem -nokeys`
+
+* Extract the private key from the keystore with:
+`openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-key.pem -nodes -nocerts`
+
+== Software
+Run `docker-compose -p universe-simulator up -d` to install all required software (`vault, zipkin,
+rabbitmq, postgres`).
 
 == Vault
 * When vault is up and running, go to vault ui at `localhost:8200` and follow the setup instructions.
+
 * After the setup, log in and enable a new `KV` engine with `universe-simulator` as path. This root
 path maps to the `spring.cloud.vault.kv.backend` property in `bootstrap.properties`.
+
 * In the `universe-simulator` engine create a secret with `event-service/local` as path.
 `event-service` maps to the `spring.application.name` property in `bootstrap.properties` and `local`
 maps to your spring boot profile used for local development. Similarly, you can add as many
 profile-specific paths as needed (e.g. `event-service/staging, event-service/prod`).
+
 * Add all required properties from the `bootstrap.properties` file to the
 `universe-simulator/event-service/local` path. You can identify such properties by the kebab-case
 syntax (e.g. `${server-port}`).
 
+* Go to `Policies` and edit the `default` policy by adding capabilities for the
+`universe-simulator/pass:[*]` path, similar to the `cubbyhole/pass:[*]` path. Example:
++
+----
+path "universe-simulator/*" {
+    capabilities = ["create", "read", "update", "delete", "list"]
+}
+----
+
+* Go to `Access > Auth Methods` and add a new `TLS Certificates` auth method. Use the default `cert`
+path.
+
+* Add your `universe-simulator-cert.pem` certificate to the created auth method.
+
 == Environment variables
-Add the following OS environment variables: `US_VAULT_HOST, US_VAULT_PORT, US_VAULT_TOKEN`. These are
-needed for the vault connection.
+Add the following OS environment variables: `US_VAULT_HOST, US_VAULT_PORT, US_KEYSTORE_PASSWORD`.
 
 == Properties file
 Add `bootstrap-local.properties` file and if needed, override any properties from the

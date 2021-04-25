@@ -17,7 +17,8 @@ services:
           "listener": {
             "tcp": {
               "address": "0.0.0.0:8200",
-              "tls_disable": true
+              "tls_cert_file": "/vault/universe-simulator-cert.pem",
+              "tls_key_file": "/vault/universe-simulator-key.pem"
             }
           },
           "ui": true
@@ -27,6 +28,15 @@ services:
     volumes:
       - vault-logs:/vault/logs
       - vault-file:/vault/file
+      - ~/universe-simulator/universe-simulator-cert.pem:/vault/universe-simulator-cert.pem:ro
+      - ~/universe-simulator/universe-simulator-key.pem:/vault/universe-simulator-key.pem:ro
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: universe-simulator-zipkin
+    restart: always
+    ports:
+      - 9411:9411
 
   rabbitmq:
     image: rabbitmq:management

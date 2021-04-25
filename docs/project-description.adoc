@@ -8,8 +8,7 @@ The project is built with `Java 11`.
 the `gradle/wrapper/gradle-wrapper.properties` file.
 
 === Updating
-You can update gradle wrapper with the following command:
-`./gradlew wrapper --gradle-version=x.x.x --distribution-type=all
+You can update gradle wrapper with: `./gradlew wrapper --gradle-version=x.x.x --distribution-type=all
 --gradle-distribution-sha256-sum=some-checksome`. Valid gradle distribution checksomes can be found
 at gradle's https://gradle.org/release-checksums/[Checksome reference page].
 
@@ -28,8 +27,8 @@ are excluded from git.
 `JaCoCo` plugin is used to analyze code coverage.
 
 === Report
-You can generate the test coverage report with the following command: `./gradlew jacocoTestReport`.
-The report can be viewed by opening the `build/reports/jacoco/test/html/index.html` file.
+You can generate the test coverage report with: `./gradlew jacocoTestReport`. The report can be
+viewed by opening the `build/reports/jacoco/test/html/index.html` file.
 
 === Exclusions
 Classes which are excluded from jacoco reports are described in the `jacocoExclusions` method in
@@ -40,8 +39,8 @@ automatically excludes such code from processing.
 
 === Rules
 100% code coverage is enforced by the `jacocoTestCoverageVerification` task. You can run this task
-with the following command: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below
-100%, the task will fail.
+with: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below 100%, the task will
+fail.
 
 == CI/CD
 `Github Actions` is used for automating the project workflow. The workflow file can be found in the
@@ -74,3 +73,6 @@ Application has support for `Https/TLS`. Additionally, `http/2` protocol is also
 
 == Messaging
 RabbitMQ is used for messaging purposes.
+
+== Tracing
+Sleuth and Zipkin are used for distributed log tracing.
