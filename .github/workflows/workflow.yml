@@ -7,12 +7,13 @@ jobs:
 #      checkout code
       - uses: actions/checkout@v2
 #      install java
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: 11
-#      validate gradle wrapper    
+#      validate gradle wrapper
       - uses: gradle/wrapper-validation-action@v1
-#      build, test and code coverage  
+#      build, test and code coverage
       - uses: burrunan/gradle-cache-action@v1
         with:
           arguments: build jacocoTestCoverageVerification --info --stacktrace

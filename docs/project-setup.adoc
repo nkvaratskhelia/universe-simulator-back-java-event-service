@@ -14,7 +14,7 @@ follow these steps:
 
 * Create a keystore with a self-signed certificate and a private key: `keytool -genkeypair -v
 -alias universe-simulator -keystore universe-simulator.p12 -keyalg RSA -validity 365
--ext SAN=dns:localhost,ip:127.0.0.1`
+-ext SAN=dns:localhost,ip:127.0.0.1`. Make sure to enter some valid country code when prompted.
 
 * Extract the certificate from the keystore with:
 `openssl pkcs12 -in universe-simulator.p12 -out universe-simulator-cert.pem -nokeys`

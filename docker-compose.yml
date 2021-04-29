@@ -28,8 +28,8 @@ services:
     volumes:
       - vault-logs:/vault/logs
       - vault-file:/vault/file
-      - ~/universe-simulator/universe-simulator-cert.pem:/vault/universe-simulator-cert.pem:ro
-      - ~/universe-simulator/universe-simulator-key.pem:/vault/universe-simulator-key.pem:ro
+      - ~/universe-simulator/universe-simulator-cert.pem:/vault/universe-simulator-cert.pem
+      - ~/universe-simulator/universe-simulator-key.pem:/vault/universe-simulator-key.pem
 
   zipkin:
     image: openzipkin/zipkin
@@ -45,11 +45,17 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=username
       - RABBITMQ_DEFAULT_PASS=password
+      - RABBITMQ_SSL_CACERTFILE=/var/lib/rabbitmq/universe-simulator-cert.pem
+      - RABBITMQ_SSL_CERTFILE=/var/lib/rabbitmq/universe-simulator-cert.pem
+      - RABBITMQ_SSL_KEYFILE=/var/lib/rabbitmq/universe-simulator-key.pem
+      - RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT=false
     ports:
-      - 5672:5672
-      - 15672:15672
+      - 5671:5671
+      - 15671:15671
     volumes:
       - rabbitmq:/var/lib/rabbitmq
+      - ~/universe-simulator/universe-simulator-cert.pem:/var/lib/rabbitmq/universe-simulator-cert.pem
+      - ~/universe-simulator/universe-simulator-key.pem:/var/lib/rabbitmq/universe-simulator-key.pem
 
 volumes:
   vault-logs:
