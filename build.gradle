@@ -17,12 +17,6 @@ idea {
     }
 }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 test {
     useJUnitPlatform()
 }
@@ -79,9 +73,10 @@ dependencyManagement {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.springframework.boot:spring-boot-starter-actuator'
-    runtimeOnly 'org.springframework.boot:spring-boot-starter-amqp'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-sleuth'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-vault-config'
@@ -89,6 +84,5 @@ dependencies {
     runtimeOnly 'org.springframework.vault:spring-vault-core:2.3.2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.amqp:spring-rabbit-test'
     testImplementation 'io.projectreactor:reactor-test'
 }
