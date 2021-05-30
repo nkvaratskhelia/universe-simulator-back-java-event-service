@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'jacoco'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'org.springframework.boot' version '2.4.6'
+    id 'org.springframework.boot' version '2.5.0'
 }
 
 group = 'com.example.universe.simulator'
@@ -80,12 +80,12 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2020.0.2'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2020.0.3'
     }
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator.common:common:0.0.2'
+    implementation 'com.example.universe.simulator.common:common:0.0.3'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
@@ -94,7 +94,6 @@ dependencies {
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-sleuth'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-vault-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
-    runtimeOnly 'org.springframework.vault:spring-vault-core:2.3.2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
