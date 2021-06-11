@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'jacoco'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'org.springframework.boot' version '2.5.0'
+    id 'org.springframework.boot' version '2.5.1'
 }
 
 group = 'com.example.universe.simulator'
@@ -85,7 +85,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator.common:common:0.0.3'
+    implementation 'com.example.universe.simulator.common:common:0.0.4'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
