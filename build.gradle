@@ -85,7 +85,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator.common:common:0.0.6'
+    implementation 'com.example.universe.simulator:common:0.0.6'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
