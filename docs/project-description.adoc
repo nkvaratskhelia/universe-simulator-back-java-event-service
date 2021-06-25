@@ -13,7 +13,7 @@ You can update gradle wrapper with: `./gradlew wrapper --gradle-version=x.x.x --
 at gradle's https://gradle.org/release-checksums/[Checksome reference page].
 
 == Framework
-The project uses `Spring Boot v 2.4.x` framework.
+The project uses `Spring Boot` framework.
 
 === Profiles
 You can have as many spring boot profiles as needed. Profiles usually map to environments (dev,
