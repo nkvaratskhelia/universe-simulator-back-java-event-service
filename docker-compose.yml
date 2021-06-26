@@ -36,7 +36,7 @@ services:
     container_name: universe-simulator-zipkin
     restart: always
     environment:
-      - RABBIT_ADDRESSES=host.docker.internal:5671
+      - RABBIT_ADDRESSES=rabbitmq:5671
       - RABBIT_USER=username
       - RABBIT_PASSWORD=password
       - RABBIT_USE_SSL=true
