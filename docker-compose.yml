@@ -35,6 +35,11 @@ services:
     image: openzipkin/zipkin
     container_name: universe-simulator-zipkin
     restart: always
+    environment:
+      - RABBIT_ADDRESSES=rabbitmq:5671
+      - RABBIT_USER=username
+      - RABBIT_PASSWORD=password
+      - RABBIT_USE_SSL=true
     ports:
       - 9411:9411
 
