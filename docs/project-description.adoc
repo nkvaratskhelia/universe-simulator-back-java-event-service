@@ -1,78 +1,9 @@
 = Project description
 
-== Language
-The project is built with `Java 11`.
-
-== Build tool
-`Gradle Wrapper` is used as a build tool for the project. Gradle-related properties can be found in
-the `gradle/wrapper/gradle-wrapper.properties` file.
-
-=== Updating
-You can update gradle wrapper with: `./gradlew wrapper --gradle-version=x.x.x --distribution-type=all
---gradle-distribution-sha256-sum=some-checksome`. Valid gradle distribution checksomes can be found
-at gradle's https://gradle.org/release-checksums/[Checksome reference page].
-
-== Framework
-The project uses `Spring Boot` framework.
-
-=== Profiles
-You can have as many spring boot profiles as needed. Profiles usually map to environments (dev,
-staging, prod). If you need to override some properties for an environment, add a new
-`bootstrap-xxx.properties` or `application-xxx.properties` file, where xxx is the name of your
-profile. Keep in mind that the `test` profile is reserved for testing purposes and the `local`
-profile for local development. `bootstrap-local.properties` and `application-local.properties` files
-are excluded from git.
-
-== Code coverage
-`JaCoCo` plugin is used to analyze code coverage.
-
-=== Report
-You can generate the test coverage report with: `./gradlew jacocoTestReport`. The report can be
-viewed by opening the `build/reports/jacoco/test/html/index.html` file.
-
-=== Exclusions
-Classes which are excluded from jacoco reports are described in the `jacocoExclusions` method in
-`build.gradle`. Additionally, all lombok generated code is also excluded. This is achieved with the
-`lombok.addLombokGeneratedAnnotation = true` parameter in the `lombok.config` file. If this parameter
-is present, lombok will annotate all generated code with its `@Generated` annotation and jacoco
-automatically excludes such code from processing.
-
-=== Rules
-100% code coverage is enforced by the `jacocoTestCoverageVerification` task. You can run this task
-with: `./gradlew jacocoTestCoverageVerification`. If the coverage falls below 100%, the task will
-fail.
-
-== CI/CD
-`Github Actions` is used for automating the project workflow. The workflow file can be found in the
-`.github/workflows` directory.
-
-=== Steps
-* Check out code from the repository
-* Install java
-* Validate `gradle-wrapper.jar`
-* Build, test and check code coverage
-* Build a docker image with gradle's `bootBuildImage` task and upload to `Docker Hub`. You need to
-add docker registry credentials to your repository secrets.
-
-== Secrets & configuration
-`Hashicorp Vault` is used to store project secrets and other variable configuration. If you stop or
-restart your vault container, vault gets sealed, and you'll need to unseal it to be able to use it
-again.
-
-== Log tracing
-Log tracing is provided by `Spring Cloud Sleuth`.
+Service that provides a centralized place for handling various events in the distributed application.
 
 == Web
-The project is build with `Spring WebFlux (Reactive Stack)`.
-
-=== Https/TLS
-Application has support for `Https/TLS`. Additionally, `http/2` protocol is also enabled.
+`Spring WebFlux (Reactive Stack)`.
 
 == Database
-`Mongo` is used to store the project model data.
-
-== Messaging
-RabbitMQ is used for messaging purposes.
-
-== Tracing
-Sleuth and Zipkin are used for distributed log tracing.
+`Mongo`
