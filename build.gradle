@@ -22,7 +22,6 @@ test {
 }
 
 jacocoTestCoverageVerification {
-    dependsOn test
     afterEvaluate {
         jacocoExclusions(classDirectories)
     }
@@ -45,9 +44,11 @@ private jacocoExclusions(classDirectories) {
 }
 
 jacocoTestReport {
-    dependsOn test
     afterEvaluate {
         jacocoExclusions(classDirectories)
+    }
+    reports {
+        xml.required = true
     }
 }
 
