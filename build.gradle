@@ -56,6 +56,7 @@ sonarqube {
         property 'sonar.host.url', "https://sonarcloud.io"
         property 'sonar.organization', "universe-simulator"
         property 'sonar.login', System.getenv('US_SONARQUBE_TOKEN')
+        property "sonar.projectKey", "nkvaratskhelia_universe-simulator-back-java-event-service"
     }
 }
 
