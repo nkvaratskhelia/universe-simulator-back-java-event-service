@@ -21,11 +21,25 @@ test {
     useJUnitPlatform()
 }
 
+def coverageExclusions = []
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: coverageExclusions)
+        }))
+    }
+    reports {
+        xml.required = true
+    }
+}
+
 jacocoTestCoverageVerification {
     afterEvaluate {
-        jacocoExclusions(classDirectories)
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: coverageExclusions)
+        }))
     }
-
     violationRules {
         rule {
             limit {
@@ -35,28 +49,12 @@ jacocoTestCoverageVerification {
     }
 }
 
-private jacocoExclusions(classDirectories) {
-    classDirectories.setFrom(files(classDirectories.files.collect {
-        fileTree(dir: it, exclude: [
-                'com/example/universe/simulator/eventservice/EventServiceApplication.class'
-        ])
-    }))
-}
-
-jacocoTestReport {
-    afterEvaluate {
-        jacocoExclusions(classDirectories)
-    }
-    reports {
-        xml.required = true
-    }
-}
-
 sonarqube {
     properties {
-        property 'sonar.host.url', "https://sonarcloud.io"
-        property 'sonar.organization', "universe-simulator"
+        property 'sonar.host.url', 'https://sonarcloud.io'
+        property 'sonar.organization', 'universe-simulator'
         property 'sonar.login', System.getenv('US_SONARQUBE_TOKEN')
+        property 'sonar.coverage.exclusions', coverageExclusions
     }
 }
 
