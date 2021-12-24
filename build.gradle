@@ -69,7 +69,7 @@ bootBuildImage {
     docker {
         publishRegistry {
             username = System.getenv('US_DOCKER_REGISTRY_USER')
-            token = System.getenv('US_DOCKER_REGISTRY_TOKEN')
+            password = System.getenv('US_DOCKER_REGISTRY_TOKEN')
         }
     }
 }
