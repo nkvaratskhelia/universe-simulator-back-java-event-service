@@ -3,7 +3,7 @@
 Service that provides a centralized place for handling various events in the distributed application.
 
 == Web
-`Spring WebFlux (Reactive Stack)`.
+`Spring WebFlux`
 
 == Database
-`Mongo`
+`MongoDB`

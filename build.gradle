@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.example.universe.simulator'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '17'
 
 idea {
@@ -64,12 +64,12 @@ dependencyCheck {
 }
 
 bootBuildImage {
-    imageName = "universesimulator/${project.name}"
+    imageName = "universesimulator/${project.name}:${System.getenv('github.run_number')}"
     publish = true
     docker {
         publishRegistry {
             username = System.getenv('US_DOCKER_REGISTRY_USER')
-            password = System.getenv('US_DOCKER_REGISTRY_PASSWORD')
+            token = System.getenv('US_DOCKER_REGISTRY_TOKEN')
         }
     }
 }
