@@ -64,7 +64,7 @@ dependencyCheck {
 }
 
 bootBuildImage {
-    imageName = "universesimulator/${project.name}:${System.getenv('github.run_number')}"
+    imageName = "universesimulator/${project.name}:${System.getenv('GITHUB_RUN_NUMBER')}"
     publish = true
     docker {
         publishRegistry {
