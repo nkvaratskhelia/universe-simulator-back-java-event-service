@@ -97,13 +97,12 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:0.3.4'
+    implementation 'com.example.universe.simulator:common:0.3.7'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+    runtimeOnly 'org.springframework.cloud:spring-cloud-starter-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-sleuth'
-    runtimeOnly 'org.springframework.cloud:spring-cloud-starter-vault-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
