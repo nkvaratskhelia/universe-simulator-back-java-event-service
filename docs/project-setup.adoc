@@ -1,0 +1,15 @@
+= Project setup
+
+== Configuration
+
+=== Properties
+Add the following properties in your `application-local.properties` file:
+
+----
+spring.r2dbc.url=r2dbc:postgresql://localhost:5433/event-service
+spring.r2dbc.username={your-postgres-username}
+spring.r2dbc.password={your-postgres-password}
+spring.liquibase.url=jdbc:postgresql://localhost:5433/event-service`
+spring.liquibase.user={your-postgres-username}
+spring.liquibase.password={your-postgres-password}
+----

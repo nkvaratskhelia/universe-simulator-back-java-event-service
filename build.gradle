@@ -97,15 +97,22 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:0.5.1'
+    implementation 'com.example.universe.simulator:common:0.5.4'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
+//    needed for liquibase
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-sleuth'
     runtimeOnly 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+    runtimeOnly 'org.liquibase:liquibase-core'
     runtimeOnly 'net.logstash.logback:logstash-logback-encoder:7.0.1'
+//    needed for liquibase
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'io.r2dbc:r2dbc-postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     annotationProcessor 'org.projectlombok:lombok'

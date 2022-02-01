@@ -1,0 +1,16 @@
+services:
+  event-service-postgres:
+    image: postgres:14.1
+    container_name: universe-simulator-event-service-postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=event-service
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5433:5432
+    volumes:
+      - event-service-postgres:/var/lib/postgresql/data
+
+volumes:
+  event-service-postgres:
