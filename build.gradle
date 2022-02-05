@@ -18,7 +18,7 @@ idea {
     }
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
 }
 
@@ -97,7 +97,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:0.6.0'
+    implementation 'com.example.universe.simulator:common:0.6.2'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
