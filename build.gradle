@@ -22,7 +22,9 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-def coverageExclusions = []
+def coverageExclusions = [
+        '**/com/example/universe/simulator/eventservice/EventServiceApplication.*'
+]
 
 jacocoTestReport {
     afterEvaluate {

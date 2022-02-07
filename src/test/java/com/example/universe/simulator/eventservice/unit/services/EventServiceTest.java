@@ -1,6 +1,6 @@
-package com.example.universe.simulator.entityservice.unit.services;
+package com.example.universe.simulator.eventservice.unit.services;
 
-import com.example.universe.simulator.entityservice.common.utils.TestUtils;
+import com.example.universe.simulator.eventservice.common.utils.TestUtils;
 import com.example.universe.simulator.eventservice.entities.Event;
 import com.example.universe.simulator.eventservice.repositories.EventRepository;
 import com.example.universe.simulator.eventservice.services.EventService;
