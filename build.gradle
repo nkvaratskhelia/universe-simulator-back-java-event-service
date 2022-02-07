@@ -95,6 +95,7 @@ repositories {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2021.0.0'
+        mavenBom 'org.testcontainers:testcontainers-bom:1.16.3'
     }
 }
 
@@ -117,6 +118,7 @@ dependencies {
     runtimeOnly 'io.r2dbc:r2dbc-postgresql'
     runtimeOnly 'org.springdoc:springdoc-openapi-webflux-ui:1.6.5'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:postgresql'
     testImplementation 'io.projectreactor:reactor-test'
     annotationProcessor 'org.projectlombok:lombok'
 }
