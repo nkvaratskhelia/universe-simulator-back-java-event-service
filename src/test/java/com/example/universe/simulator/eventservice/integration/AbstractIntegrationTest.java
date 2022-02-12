@@ -18,7 +18,7 @@ abstract class AbstractIntegrationTest {
     protected WebTestClient webClient;
 
     static {
-        POSTGRESQL_CONTAINER = new PostgreSQLContainer<>("postgres:14.1");
+        POSTGRESQL_CONTAINER = new PostgreSQLContainer<>("postgres:14.2");
         POSTGRESQL_CONTAINER.start();
     }
 
