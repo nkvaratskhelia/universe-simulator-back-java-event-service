@@ -12,6 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 import java.time.Clock;
+import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -25,11 +26,11 @@ class EventControllerTest extends AbstractWebFluxTest {
     @Test
     void testGetList() {
         // given
-        Flux<Event> flux = Flux.just(
+        List<Event> entities = List.of(
             TestUtils.buildEvent(Clock.systemUTC())
         );
 
-        given(service.getList()).willReturn(flux);
+        given(service.getList()).willReturn(Flux.fromIterable(entities));
         // when
         Flux<Event> result = webClient.get()
             .uri("/event/get-list")
@@ -39,7 +40,7 @@ class EventControllerTest extends AbstractWebFluxTest {
             .getResponseBody();
         // then
         StepVerifier.create(result)
-            .expectNextSequence(flux.toIterable())
+            .expectNextSequence(entities)
             .verifyComplete();
 
         then(service).should().getList();

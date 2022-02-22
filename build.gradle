@@ -100,7 +100,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:0.6.7'
+    implementation 'com.example.universe.simulator:common:0.7.0'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -120,5 +120,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'io.projectreactor:reactor-test'
+    testCompileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 }
