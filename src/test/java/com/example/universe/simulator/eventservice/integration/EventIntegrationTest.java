@@ -60,7 +60,7 @@ class EventIntegrationTest extends AbstractIntegrationTest {
             .getResponseBody();
         // then
         StepVerifier.create(result)
-            .expectNextCount(0)
+            .expectNextCount(1)
             .verifyComplete();
     }
 }
