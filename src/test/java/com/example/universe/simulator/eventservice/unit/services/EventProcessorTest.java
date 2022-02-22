@@ -10,7 +10,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import reactor.core.publisher.Mono;
 
+import java.time.Clock;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,7 +30,9 @@ class EventProcessorTest {
     @Test
     void testProcess() {
         // given
-        EventDto event = TestUtils.buildEventDto();
+        EventDto event = TestUtils.buildEventDto(Clock.systemDefaultZone());
+
+        given(eventService.add(any())).willReturn(Mono.empty());
         // when
         eventProcessor.process(event);
         // then

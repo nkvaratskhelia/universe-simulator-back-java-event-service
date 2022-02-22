@@ -17,9 +17,11 @@ public class EventProcessor {
     @RabbitListener(queues = "${app.rabbitmq.event-queue}")
     public void process(EventDto event) {
         log.info("received {}", event);
+
         eventService.add(
             new Event(null, event.type(), event.data(), event.time())
-        );
+        ).blockOptional();
+
         log.info("processed {}", event);
     }
 }

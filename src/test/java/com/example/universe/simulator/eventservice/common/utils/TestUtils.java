@@ -11,11 +11,11 @@ import java.util.UUID;
 @UtilityClass
 public class TestUtils {
 
-    public EventDto buildEventDto() {
+    public EventDto buildEventDto(Clock clock) {
         return new EventDto(
             "type",
             "data",
-            OffsetDateTime.now()
+            OffsetDateTime.now(clock)
         );
     }
 

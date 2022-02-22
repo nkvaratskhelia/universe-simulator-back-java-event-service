@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-add-default-value-event-id
+      author: nikoloz.kvaratskhelia
+      changes:
+        - addDefaultValue:
+            tableName: event
+            columnName: id
+            defaultValueComputed: gen_random_uuid()
