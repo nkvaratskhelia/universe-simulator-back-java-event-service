@@ -23,7 +23,8 @@ tasks.named('test') {
 }
 
 def coverageExclusions = [
-        '**/com/example/universe/simulator/eventservice/EventServiceApplication.*'
+        '**/com/example/universe/simulator/eventservice/EventServiceApplication.*',
+        '**/com/example/universe/simulator/eventservice/entities/Event.*'
 ]
 
 jacocoTestReport {
