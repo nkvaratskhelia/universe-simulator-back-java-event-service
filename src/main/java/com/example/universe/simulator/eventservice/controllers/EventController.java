@@ -1,6 +1,6 @@
 package com.example.universe.simulator.eventservice.controllers;
 
-import com.example.universe.simulator.eventservice.entities.Event;
+import com.example.universe.simulator.common.dtos.EventDto;
 import com.example.universe.simulator.eventservice.services.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,9 @@ public class EventController {
     private final EventService service;
 
     @GetMapping("get-list")
-    public Flux<Event> getList() {
+    public Flux<EventDto> getList() {
         log.info("calling getList");
-        return service.getList();
+        return service.getList()
+            .map(item -> new EventDto(item.type(), item.data(), item.time()));
     }
 }
