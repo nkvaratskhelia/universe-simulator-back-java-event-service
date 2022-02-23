@@ -2,7 +2,6 @@ package com.example.universe.simulator.eventservice.integration;
 
 import com.example.universe.simulator.common.dtos.EventDto;
 import com.example.universe.simulator.eventservice.common.utils.TestUtils;
-import com.example.universe.simulator.eventservice.entities.Event;
 import com.example.universe.simulator.eventservice.repositories.EventRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -31,10 +30,10 @@ class EventIntegrationTest extends AbstractIntegrationTest {
         // -----------------------------------should return empty list-----------------------------------
 
         // when
-        Flux<Event> result = webClient.get()
+        Flux<EventDto> result = webClient.get()
             .uri("/event/get-list")
             .exchange()
-            .returnResult(Event.class)
+            .returnResult(EventDto.class)
             .getResponseBody();
         // then
         StepVerifier.create(result)
@@ -56,7 +55,7 @@ class EventIntegrationTest extends AbstractIntegrationTest {
         result = webClient.get()
             .uri("/event/get-list")
             .exchange()
-            .returnResult(Event.class)
+            .returnResult(EventDto.class)
             .getResponseBody();
         // then
         StepVerifier.create(result)
