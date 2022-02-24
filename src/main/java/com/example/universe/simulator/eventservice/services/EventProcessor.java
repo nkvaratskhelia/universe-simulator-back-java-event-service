@@ -20,8 +20,6 @@ public class EventProcessor {
 
         eventService.add(
             new Event(null, event.type(), event.data(), event.time())
-        ).blockOptional();
-
-        log.info("processed {}", event);
+        ).subscribe(result -> log.info("processed {}", result));
     }
 }
