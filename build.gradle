@@ -101,12 +101,13 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:0.7.2'
+    implementation 'com.example.universe.simulator:common:0.7.3'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
 //    needed for liquibase
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-actuator'
     runtimeOnly 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
