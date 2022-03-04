@@ -4,6 +4,7 @@ import com.example.universe.simulator.common.dtos.EventDto;
 import com.example.universe.simulator.eventservice.services.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ public class EventController {
 
     private final EventService service;
 
-    @GetMapping("get-list")
+    @GetMapping(value = "get-list", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<EventDto> getList() {
         log.info("calling getList");
         return service.getList()
