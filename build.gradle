@@ -118,7 +118,7 @@ dependencies {
 //    needed for liquibase
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'io.r2dbc:r2dbc-postgresql'
-    runtimeOnly 'org.springdoc:springdoc-openapi-webflux-ui:1.6.6'
+    runtimeOnly 'org.springdoc:springdoc-openapi-webflux-ui:1.6.7'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.awaitility:awaitility'
     testImplementation 'io.projectreactor:reactor-test'
