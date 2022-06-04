@@ -101,7 +101,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:1.0.7'
+    implementation 'com.example.universe.simulator:common:1.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -112,7 +112,6 @@ dependencies {
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-sleuth'
-    runtimeOnly 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
     runtimeOnly 'org.liquibase:liquibase-core'
     runtimeOnly 'net.logstash.logback:logstash-logback-encoder:7.2'
 //    needed for liquibase
