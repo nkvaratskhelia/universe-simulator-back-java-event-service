@@ -1,6 +1,6 @@
 = Project setup
 
-== PostgreSQL
+== Postgres
 * Run `docker-compose -p universe-simulator up -d event-service-postgres`
 
 == Configuration
@@ -9,9 +9,11 @@
 Add the following properties in your `application-local.properties` file:
 
 ----
+#r2dbc
 spring.r2dbc.url=r2dbc:postgresql://localhost:5433/event-service
 spring.r2dbc.username=user
 spring.r2dbc.password=password
+#liquibase
 spring.liquibase.url=jdbc:postgresql://localhost:5433/event-service
 spring.liquibase.user=user
 spring.liquibase.password=password

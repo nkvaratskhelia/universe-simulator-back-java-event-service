@@ -12,7 +12,7 @@ See `entity-service` docs.
 == Data
 
 === Database
-`PostgreSQL` with `R2DBC`
+`Postgres` with `R2DBC`
 
 === Migration
 See `entity-service` docs.
