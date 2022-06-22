@@ -1,7 +1,7 @@
 = Project setup
 
 == Postgres
-* Run `docker-compose -p universe-simulator up -d event-service-postgres`
+Run `docker-compose -p universe-simulator up -d event-service-postgres`
 
 == Configuration
 

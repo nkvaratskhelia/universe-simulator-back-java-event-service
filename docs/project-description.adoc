@@ -6,9 +6,6 @@ in the distributed application.
 == Web
 `Spring WebFlux`
 
-=== Rest API
-See `entity-service` docs.
-
 == Data
 
 === Database
