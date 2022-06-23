@@ -17,4 +17,7 @@ spring.r2dbc.password=password
 spring.liquibase.url=jdbc:postgresql://localhost:5433/event-service
 spring.liquibase.user=user
 spring.liquibase.password=password
+#rabbitmq
+spring.rabbitmq.username=user
+spring.rabbitmq.password=password
 ----
