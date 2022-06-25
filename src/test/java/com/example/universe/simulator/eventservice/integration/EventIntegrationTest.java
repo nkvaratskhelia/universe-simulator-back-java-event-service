@@ -27,7 +27,7 @@ class EventIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void test() {
-        // -----------------------------------should return empty list-----------------------------------
+        // ----------------------------------------should return empty list----------------------------------------
 
         // when
         Flux<EventDto> result = webClient.get()
@@ -40,16 +40,16 @@ class EventIntegrationTest extends AbstractIntegrationTest {
             .expectNextCount(0)
             .verifyComplete();
 
-        // -----------------------------------add entity-----------------------------------
+        // ----------------------------------------add entity----------------------------------------
 
         EventDto dto = TestUtils.buildEventDto(Clock.systemUTC());
         rabbitTemplate.convertAndSend(eventQueue, dto);
 
-        // -----------------------------------wait for entity to be added-----------------------------------
+        // ----------------------------------------wait for entity to be added----------------------------------------
 
         await().until(() -> repository.count().blockOptional().orElse(0L) > 0);
 
-        // -----------------------------------should return list with 1 element-----------------------------------
+        // ----------------------------------------should return list with 1 element----------------------------------------
 
         // when
         result = webClient.get()
