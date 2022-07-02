@@ -31,7 +31,7 @@ class EventIntegrationTest extends AbstractIntegrationTest {
 
         // when
         Flux<EventDto> result = webClient.get()
-            .uri("/event/get-list")
+            .uri("/events")
             .exchange()
             .returnResult(EventDto.class)
             .getResponseBody();
@@ -53,7 +53,7 @@ class EventIntegrationTest extends AbstractIntegrationTest {
 
         // when
         result = webClient.get()
-            .uri("/event/get-list")
+            .uri("/events")
             .exchange()
             .returnResult(EventDto.class)
             .getResponseBody();

@@ -26,7 +26,7 @@ class RestExceptionHandlerTest extends AbstractWebFluxTest {
         given(service.getList()).willThrow(RuntimeException.class);
         // when
         ErrorDto result = webClient.get()
-            .uri("/event/get-list")
+            .uri("/events")
             .exchange()
             .expectStatus().isEqualTo(ErrorCodeType.SERVER_ERROR.getHttpStatus())
             .expectBody(ErrorDto.class)

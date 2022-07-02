@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
-@RequestMapping("event")
+@RequestMapping("events")
 @RequiredArgsConstructor
 @Slf4j
 public class EventController {
 
     private final EventService service;
 
-    @GetMapping(value = "get-list", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<EventDto> getList() {
         log.info("calling getList");
         return service.getList()

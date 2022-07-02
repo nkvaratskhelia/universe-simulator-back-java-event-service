@@ -38,7 +38,7 @@ class EventControllerTest extends AbstractWebFluxTest {
         given(service.getList()).willReturn(Flux.fromIterable(entities));
         // when
         Flux<EventDto> result = webClient.get()
-            .uri("/event/get-list")
+            .uri("/events")
             .exchange()
             .expectStatus().isOk()
             .returnResult(EventDto.class)
