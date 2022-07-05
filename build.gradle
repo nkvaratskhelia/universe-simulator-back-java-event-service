@@ -107,14 +107,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.springframework.boot:spring-boot-starter-actuator'
-//    needed for liquibase
+    // needed for liquibase
     runtimeOnly 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-config'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    // needed for spring cloud load balancer
+    runtimeOnly 'com.github.ben-manes.caffeine:caffeine'
     runtimeOnly 'org.liquibase:liquibase-core'
     runtimeOnly 'net.logstash.logback:logstash-logback-encoder:7.2'
-//    needed for liquibase
+    // needed for liquibase
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
     runtimeOnly 'org.springdoc:springdoc-openapi-webflux-ui:1.6.9'
