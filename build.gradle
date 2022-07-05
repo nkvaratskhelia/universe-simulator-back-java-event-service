@@ -93,6 +93,13 @@ repositories {
     }
 }
 
+ext {
+    set('commonVersion', '1.4.0')
+    set('logstashLogbackEncoderVersion', '7.2')
+    set('springBootAdminVersion', '2.7.2')
+    set('springdocOpenapiVersion', '1.6.9')
+}
+
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2021.0.3'
@@ -101,12 +108,11 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'com.example.universe.simulator:common:1.4.0'
+    implementation "com.example.universe.simulator:common:${commonVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.springframework.boot:spring-boot-starter-actuator'
     // needed for liquibase
     runtimeOnly 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-config'
@@ -115,11 +121,14 @@ dependencies {
     // needed for spring cloud load balancer
     runtimeOnly 'com.github.ben-manes.caffeine:caffeine'
     runtimeOnly 'org.liquibase:liquibase-core'
-    runtimeOnly 'net.logstash.logback:logstash-logback-encoder:7.2'
+    runtimeOnly "net.logstash.logback:logstash-logback-encoder:${logstashLogbackEncoderVersion}"
+    // needed to prevent netty dns error on aarch_64 (mac M1)
+    runtimeOnly "io.netty:netty-resolver-dns-native-macos:${dependencyManagement.importedProperties['netty.version']}:osx-aarch_64"
     // needed for liquibase
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
-    runtimeOnly 'org.springdoc:springdoc-openapi-webflux-ui:1.6.9'
+    runtimeOnly "de.codecentric:spring-boot-admin-starter-client:${springBootAdminVersion}"
+    runtimeOnly "org.springdoc:springdoc-openapi-webflux-ui:${springdocOpenapiVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.awaitility:awaitility'
     testImplementation 'org.testcontainers:postgresql'
