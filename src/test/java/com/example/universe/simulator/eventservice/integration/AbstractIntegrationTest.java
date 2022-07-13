@@ -20,7 +20,7 @@ abstract class AbstractIntegrationTest {
     protected WebTestClient webClient;
 
     static {
-        RABBITMQ_CONTAINER = new RabbitMQContainer("rabbitmq:3.10.5-management");
+        RABBITMQ_CONTAINER = new RabbitMQContainer("rabbitmq:3.10.6-management");
         POSTGRESQL_CONTAINER = new PostgreSQLContainer<>("postgres:14.4");
 
         RABBITMQ_CONTAINER.start();
