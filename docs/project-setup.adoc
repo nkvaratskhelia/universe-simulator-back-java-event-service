@@ -1,7 +1,7 @@
 = Project setup
 
-== Postgres
-Run `docker-compose -p universe-simulator up -d event-service-postgres`
+== Mongo
+Run `docker-compose -p universe-simulator up -d event-service-mongo`
 
 == Configuration
 
@@ -9,10 +9,10 @@ Run `docker-compose -p universe-simulator up -d event-service-postgres`
 Add the following properties in your `application-local.properties` file:
 
 ----
-#r2dbc
-spring.r2dbc.url=r2dbc:postgresql://localhost:5433/event-service
-spring.r2dbc.username=user
-spring.r2dbc.password=password
+#mongodb
+spring.data.mongodb.authentication-database=admin
+spring.data.mongodb.username=user
+spring.data.mongodb.password=password
 #liquibase
 spring.liquibase.url=jdbc:postgresql://localhost:5433/event-service
 spring.liquibase.user=user

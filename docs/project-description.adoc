@@ -9,7 +9,7 @@ in the distributed application.
 == Data
 
 === Database
-`Postgres` with `R2DBC`
+`Mongo` with `Spring Data MongoDB (Reactive)`
 
 === Migration
 See `entity-service` docs.
