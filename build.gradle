@@ -127,6 +127,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.awaitility:awaitility'
     testImplementation 'org.testcontainers:rabbitmq'
+    testImplementation "org.testcontainers:mongodb"
     testImplementation 'io.projectreactor:reactor-test'
     testCompileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

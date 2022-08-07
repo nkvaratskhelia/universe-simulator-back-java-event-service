@@ -9,6 +9,6 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - event-service-mongo:/var/lib/mongo/data
+      - event-service-mongo:/data/db
 volumes:
   event-service-mongo:

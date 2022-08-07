@@ -11,8 +11,6 @@ in the distributed application.
 === Database
 `Mongo` with `Spring Data MongoDB (Reactive)`
 
-=== Migration
-See `entity-service` docs.
 
 == Testing
 

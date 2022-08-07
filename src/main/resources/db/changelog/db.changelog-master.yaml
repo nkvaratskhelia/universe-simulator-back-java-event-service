@@ -1,4 +1,0 @@
-databaseChangeLog:
-  - includeAll:
-      path: db/changelog/scripts
-      errorIfMissingOrEmpty: false

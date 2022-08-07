@@ -13,10 +13,6 @@ Add the following properties in your `application-local.properties` file:
 spring.data.mongodb.authentication-database=admin
 spring.data.mongodb.username=user
 spring.data.mongodb.password=password
-#liquibase
-spring.liquibase.url=jdbc:postgresql://localhost:5433/event-service
-spring.liquibase.user=user
-spring.liquibase.password=password
 #rabbitmq
 spring.rabbitmq.username=user
 spring.rabbitmq.password=password
