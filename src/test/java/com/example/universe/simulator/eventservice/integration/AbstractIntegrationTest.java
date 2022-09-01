@@ -21,7 +21,7 @@ abstract class AbstractIntegrationTest {
 
     static {
         RABBITMQ_CONTAINER = new RabbitMQContainer("rabbitmq:3.10.7-management");
-        MONGODB_CONTAINER = new MongoDBContainer("mongo:5.0.9");
+        MONGODB_CONTAINER = new MongoDBContainer("mongo:6.0.1");
 
         RABBITMQ_CONTAINER.start();
         MONGODB_CONTAINER.start();
