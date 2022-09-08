@@ -1,16 +1,14 @@
 services:
-  event-service-postgres:
-    container_name: universe-simulator-event-service-postgres
-    image: postgres:14.5
+  event-service-mongo:
+    container_name: universe-simulator-event-service-mongo
+    image: mongo:6.0.1
     restart: always
     environment:
-      - POSTGRES_DB=event-service
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=password
     ports:
-      - 5433:5432
+      - 27017:27017
     volumes:
-      - event-service-postgres:/var/lib/postgresql/data
-
+      - event-service-mongo:/data/db
 volumes:
-  event-service-postgres:
+  event-service-mongo:
