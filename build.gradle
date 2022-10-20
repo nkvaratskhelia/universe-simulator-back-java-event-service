@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'jacoco'
-    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'org.springframework.boot' version '2.7.4'
     id 'org.sonarqube' version '3.3'
     id 'org.owasp.dependencycheck' version '7.2.1'
@@ -94,7 +94,7 @@ repositories {
 }
 
 ext {
-    set('commonVersion', '1.6.1')
+    set('commonVersion', '1.6.5')
     set('logstashLogbackEncoderVersion', '7.2')
     set('springBootAdminVersion', '2.7.6')
     set('springdocOpenapiVersion', '1.6.12')
