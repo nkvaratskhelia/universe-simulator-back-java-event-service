@@ -1,13 +1,14 @@
 package com.example.universe.simulator.eventservice.unit.exception;
 
-import com.example.universe.simulator.common.dtos.ErrorDto;
 import com.example.universe.simulator.eventservice.common.abstractions.AbstractWebFluxTest;
 import com.example.universe.simulator.eventservice.controllers.EventController;
+import com.example.universe.simulator.eventservice.exception.RestExceptionHandler;
 import com.example.universe.simulator.eventservice.services.EventService;
 import com.example.universe.simulator.eventservice.types.ErrorCodeType;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ProblemDetail;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -25,16 +26,23 @@ class RestExceptionHandlerTest extends AbstractWebFluxTest {
         // given
         given(service.getList()).willThrow(RuntimeException.class);
         // when
-        ErrorDto result = webClient.get()
+        ProblemDetail result = webClient.get()
             .uri("/events")
             .exchange()
             .expectStatus().isEqualTo(ErrorCodeType.SERVER_ERROR.getHttpStatus())
-            .expectBody(ErrorDto.class)
+            .expectBody(ProblemDetail.class)
             .returnResult()
             .getResponseBody();
         // then
-        assertThat(result).isNotNull();
-        assertThat(result.errorCode()).isEqualTo(ErrorCodeType.SERVER_ERROR.toString());
+        assertThat(result)
+            .isNotNull()
+            .extracting(ProblemDetail::getDetail)
+            .isEqualTo(ErrorCodeType.SERVER_ERROR.toString());
+
+        assertThat(result.getProperties())
+            .isNotNull()
+            .extractingByKey(RestExceptionHandler.TIMESTAMP_PROPERTY)
+            .isNotNull();
 
         then(service).should().getList();
     }
