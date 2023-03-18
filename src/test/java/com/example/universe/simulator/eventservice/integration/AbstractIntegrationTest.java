@@ -8,6 +8,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.containers.RabbitMQContainer;
+import org.testcontainers.lifecycle.Startables;
 
 @AbstractSpringBootTest
 @AutoConfigureWebTestClient
@@ -23,8 +24,7 @@ abstract class AbstractIntegrationTest {
         RABBITMQ_CONTAINER = new RabbitMQContainer("rabbitmq:3.11.10-management");
         POSTGRESQL_CONTAINER = new PostgreSQLContainer<>("postgres:15.2");
 
-        RABBITMQ_CONTAINER.start();
-        POSTGRESQL_CONTAINER.start();
+        Startables.deepStart(RABBITMQ_CONTAINER, POSTGRESQL_CONTAINER).join();
     }
 
     @DynamicPropertySource
