@@ -38,14 +38,14 @@ class EventServiceTest {
         );
 
         given(repository.findAll()).willReturn(Flux.fromIterable(entities));
+
         // when
         Flux<Event> result = service.getList();
+
         // then
         StepVerifier.create(result)
             .expectNextSequence(entities)
             .verifyComplete();
-
-        then(repository).should().findAll();
     }
 
     @Test
@@ -53,16 +53,17 @@ class EventServiceTest {
         // given
         Event entity = TestUtils.buildEvent(Clock.systemDefaultZone());
 
-        given(repository.findByTypeAndDataAndTime(any(), any(), any()))
+        given(repository.findByTypeAndDataAndTime(entity.type(), entity.data(), entity.time()))
             .willReturn(Mono.just(entity));
+
         // when
         Mono<Event> result = service.add(entity);
+
         // then
         StepVerifier.create(result)
             .expectNext(entity)
             .verifyComplete();
 
-        then(repository).should().findByTypeAndDataAndTime(entity.type(), entity.data(), entity.time());
         then(repository).should((never())).save(any());
     }
 
@@ -71,17 +72,16 @@ class EventServiceTest {
         // given
         Event entity = TestUtils.buildEvent(Clock.systemDefaultZone());
 
-        given(repository.findByTypeAndDataAndTime(any(), any(), any()))
+        given(repository.findByTypeAndDataAndTime(entity.type(), entity.data(), entity.time()))
             .willReturn(Mono.empty());
-        given(repository.save(any())).willReturn(Mono.just(entity));
+        given(repository.save(entity)).willReturn(Mono.just(entity));
+
         // when
         Mono<Event> result = service.add(entity);
+
         // then
         StepVerifier.create(result)
             .expectNext(entity)
             .verifyComplete();
-
-        then(repository).should().findByTypeAndDataAndTime(entity.type(), entity.data(), entity.time());
-        then(repository).should().save(entity);
     }
 }

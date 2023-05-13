@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 
 @WebFluxTest(EventController.class)
 class EventControllerTest extends AbstractWebFluxTest {
@@ -36,6 +35,7 @@ class EventControllerTest extends AbstractWebFluxTest {
             .collect(Collectors.toList());
 
         given(service.getList()).willReturn(Flux.fromIterable(entities));
+
         // when
         Flux<EventDto> result = webClient.get()
             .uri("/events")
@@ -43,11 +43,10 @@ class EventControllerTest extends AbstractWebFluxTest {
             .expectStatus().isOk()
             .returnResult(EventDto.class)
             .getResponseBody();
+
         // then
         StepVerifier.create(result)
             .expectNextSequence(dtos)
             .verifyComplete();
-
-        then(service).should().getList();
     }
 }

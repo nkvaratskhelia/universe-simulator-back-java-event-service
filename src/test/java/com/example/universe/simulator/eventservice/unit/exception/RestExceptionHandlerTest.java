@@ -12,9 +12,7 @@ import org.springframework.http.ProblemDetail;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 
-// Exception handling is tested using EventController.
 @WebFluxTest(EventController.class)
 class RestExceptionHandlerTest extends AbstractWebFluxTest {
 
@@ -25,6 +23,7 @@ class RestExceptionHandlerTest extends AbstractWebFluxTest {
     void testUnknownException() {
         // given
         given(service.getList()).willThrow(RuntimeException.class);
+
         // when
         ProblemDetail result = webClient.get()
             .uri("/events")
@@ -33,6 +32,7 @@ class RestExceptionHandlerTest extends AbstractWebFluxTest {
             .expectBody(ProblemDetail.class)
             .returnResult()
             .getResponseBody();
+
         // then
         assertThat(result)
             .isNotNull()
@@ -43,7 +43,5 @@ class RestExceptionHandlerTest extends AbstractWebFluxTest {
             .isNotNull()
             .extractingByKey(RestExceptionHandler.TIMESTAMP_PROPERTY)
             .isNotNull();
-
-        then(service).should().getList();
     }
 }

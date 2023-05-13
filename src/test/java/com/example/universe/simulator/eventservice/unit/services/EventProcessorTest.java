@@ -33,8 +33,10 @@ class EventProcessorTest {
         EventDto event = TestUtils.buildEventDto(Clock.systemDefaultZone());
 
         given(eventService.add(any())).willReturn(Mono.empty());
+
         // when
         eventProcessor.process(event);
+
         // then
         then(eventService).should().add(
             new Event(null, event.type(), event.data(), event.time())
