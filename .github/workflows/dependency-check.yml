@@ -14,7 +14,7 @@ jobs:
           distribution: 'temurin'
       - uses: gradle/gradle-build-action@v2
         with:
-          arguments: dependencyCheckAnalyze --build-cache --configuration-cache --info --stacktrace
+          arguments: dependencyCheckAnalyze --build-cache --info --stacktrace
         env:
           US_GITHUB_PACKAGES_USER: ${{ secrets.US_GITHUB_PACKAGES_USER }}
           US_GITHUB_PACKAGES_TOKEN: ${{ secrets.US_GITHUB_PACKAGES_TOKEN }}
