@@ -6,76 +6,12 @@ plugins {
     id 'org.springframework.boot' version '3.1.0'
     id 'org.sonarqube' version '4.0.0.2929'
     id 'org.owasp.dependencycheck' version '8.2.1'
+    id 'io.freefair.lombok' version '8.0.1'
 }
 
 group = 'com.example.universe.simulator'
 version = '1.0.0'
 sourceCompatibility = '17'
-
-idea {
-    module {
-        downloadJavadoc = true
-    }
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-def coverageExclusions = [
-        '**/com/example/universe/simulator/eventservice/EventServiceApplication.*',
-        '**/com/example/universe/simulator/eventservice/entities/Event.*'
-]
-
-jacocoTestReport {
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: coverageExclusions)
-        }))
-    }
-    reports {
-        xml.required = true
-    }
-}
-
-jacocoTestCoverageVerification {
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: coverageExclusions)
-        }))
-    }
-    violationRules {
-        rule {
-            limit {
-                minimum = 1
-            }
-        }
-    }
-}
-
-sonarqube {
-    properties {
-        property 'sonar.host.url', 'https://sonarcloud.io'
-        property 'sonar.organization', 'universe-simulator'
-        property 'sonar.login', System.getenv('US_SONARQUBE_TOKEN')
-        property 'sonar.coverage.exclusions', coverageExclusions
-    }
-}
-
-dependencyCheck {
-    failBuildOnCVSS = 7
-}
-
-bootBuildImage {
-    imageName = "universesimulator/${project.name}:${System.getenv('GITHUB_RUN_NUMBER')}"
-    publish = true
-    docker {
-        publishRegistry {
-            username = System.getenv('US_DOCKER_REGISTRY_USER')
-            password = System.getenv('US_DOCKER_REGISTRY_TOKEN')
-        }
-    }
-}
 
 repositories {
     mavenCentral()
@@ -112,7 +48,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    compileOnly 'org.projectlombok:lombok'
     // needed for liquibase
     runtimeOnly 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-config'
@@ -133,7 +68,71 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.testcontainers:rabbitmq'
     testImplementation 'io.projectreactor:reactor-test'
-    testCompileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+    }
+}
+
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'https://sonarcloud.io'
+        property 'sonar.organization', 'universe-simulator'
+        property 'sonar.login', System.getenv('US_SONARQUBE_TOKEN')
+        property 'sonar.coverage.exclusions', coverageExclusions
+    }
+}
+
+dependencyCheck {
+    failBuildOnCVSS = 7
+}
+
+bootBuildImage {
+    imageName = "universesimulator/${project.name}:${System.getenv('GITHUB_RUN_NUMBER')}"
+    publish = true
+    docker {
+        publishRegistry {
+            username = System.getenv('US_DOCKER_REGISTRY_USER')
+            password = System.getenv('US_DOCKER_REGISTRY_TOKEN')
+        }
+    }
+}
+
+lombok { version = dependencyManagement.importedProperties['lombok.version'] }
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+def coverageExclusions = [
+        '**/com/example/universe/simulator/eventservice/EventServiceApplication.*',
+        '**/com/example/universe/simulator/eventservice/entities/Event.*'
+]
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: coverageExclusions)
+        }))
+    }
+    reports {
+        xml.required = true
+    }
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: coverageExclusions)
+        }))
+    }
+    violationRules {
+        rule {
+            limit {
+                minimum = 1
+            }
+        }
+    }
 }
