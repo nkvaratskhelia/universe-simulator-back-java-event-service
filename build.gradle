@@ -63,9 +63,11 @@ dependencies {
     runtimeOnly "de.codecentric:spring-boot-admin-starter-client:${springBootAdminVersion}"
     runtimeOnly "org.springdoc:springdoc-openapi-starter-webflux-ui:${springdocOpenapiVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
     testImplementation 'org.awaitility:awaitility'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.testcontainers:rabbitmq'
+    testImplementation 'org.testcontainers:r2dbc'
     testImplementation 'io.projectreactor:reactor-test'
 }
 
