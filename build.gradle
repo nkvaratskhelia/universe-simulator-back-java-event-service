@@ -11,7 +11,10 @@ plugins {
 
 group = 'com.example.universe.simulator'
 version = '1.0.0'
-sourceCompatibility = '17'
+
+java {
+    sourceCompatibility = '17'
+}
 
 repositories {
     mavenCentral()
