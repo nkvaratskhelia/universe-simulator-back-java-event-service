@@ -36,7 +36,7 @@ ext {
     set('commonVersion', '2.3.8')
     set('springBootAdminVersion', '3.1.4')
     set('logstashLogbackEncoderVersion', '7.4')
-    set('springdocOpenapiVersion', '2.1.0')
+    set('springdocOpenapiVersion', '2.2.0')
 }
 
 dependencyManagement {
