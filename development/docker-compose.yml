@@ -1,7 +1,7 @@
 services:
   event-service-postgres:
     container_name: universe-simulator-event-service-postgres
-    image: postgres:15.3
+    image: postgres:15.4
     restart: always
     environment:
       - POSTGRES_DB=event-service
