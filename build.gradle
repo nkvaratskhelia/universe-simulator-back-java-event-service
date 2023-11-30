@@ -13,7 +13,7 @@ group = 'com.example.universe.simulator'
 version = '1.0.0'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
 }
 
 repositories {
@@ -33,7 +33,7 @@ repositories {
 }
 
 ext {
-    set('commonVersion', '2.7.2')
+    set('commonVersion', '2.7.5')
     set('springBootAdminVersion', '3.1.8')
     set('logstashLogbackEncoderVersion', '7.4')
     set('springdocOpenapiVersion', '2.2.0')
