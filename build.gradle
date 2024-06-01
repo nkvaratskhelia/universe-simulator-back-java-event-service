@@ -34,14 +34,14 @@ repositories {
 
 ext {
     set('commonVersion', '3.0.2')
-    set('springBootAdminVersion', '3.2.3')
+    set('springBootAdminVersion', '3.3.0')
     set('logstashLogbackEncoderVersion', '7.4')
     set('springdocOpenapiVersion', '2.5.0')
 }
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.1'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.2'
     }
 }
 
