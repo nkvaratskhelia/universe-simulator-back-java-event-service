@@ -13,7 +13,9 @@ group = 'com.example.universe.simulator'
 version = '1.0.0'
 
 java {
-    sourceCompatibility = '21'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -34,7 +36,7 @@ repositories {
 
 ext {
     set('commonVersion', '3.0.2')
-    set('springBootAdminVersion', '3.3.0')
+    set('springBootAdminVersion', '3.3.2')
     set('logstashLogbackEncoderVersion', '7.4')
     set('springdocOpenapiVersion', '2.5.0')
 }
