@@ -8,7 +8,7 @@ import com.example.universe.simulator.eventservice.entities.Event;
 import com.example.universe.simulator.eventservice.services.EventService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
@@ -21,7 +21,7 @@ import static org.mockito.BDDMockito.given;
 @WebFluxTest(EventController.class)
 class EventControllerTest extends AbstractWebFluxTest {
 
-    @MockBean
+    @MockitoBean
     private EventService service;
 
     @Test
