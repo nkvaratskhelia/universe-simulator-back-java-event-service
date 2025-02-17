@@ -10,18 +10,12 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - uses: gradle/actions/wrapper-validation@v3
-      - name: build, test & code coverage
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: build jacocoTestReport jacocoTestCoverageVerification --build-cache --info --stacktrace
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew build jacocoTestReport jacocoTestCoverageVerification --build-cache --info --stacktrace
         env:
           US_GITHUB_PACKAGES_USER: ${{ secrets.US_GITHUB_PACKAGES_USER }}
           US_GITHUB_PACKAGES_TOKEN: ${{ secrets.US_GITHUB_PACKAGES_TOKEN }}
-      - name: sonarqube
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: sonarqube --build-cache --info --stacktrace
+      - run: ./gradlew sonarqube --build-cache --info --stacktrace
         env:
           US_SONARQUBE_TOKEN: ${{ secrets.US_SONARQUBE_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,10 +27,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.US_SONARQUBE_TOKEN }}
       - name: publish
-        uses: gradle/actions/setup-gradle@v3
         if: github.ref == 'refs/heads/main'
-        with:
-          arguments: bootBuildImage --build-cache --info --stacktrace
+        run: ./gradlew bootBuildImage --build-cache --info --stacktrace
         env:
           US_DOCKER_REGISTRY_USER: ${{ secrets.US_DOCKER_REGISTRY_USER }}
           US_DOCKER_REGISTRY_TOKEN: ${{ secrets.US_DOCKER_REGISTRY_TOKEN }}
