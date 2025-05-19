@@ -4,7 +4,7 @@ plugins {
     id 'jacoco'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'org.springframework.boot' version '3.4.5'
-    id 'org.sonarqube' version '6.1.0.5360'
+    id 'org.sonarqube' version '6.2.0.5505'
     id 'org.owasp.dependencycheck' version '12.1.1'
     id 'io.freefair.lombok' version '8.13.1'
 }
@@ -38,7 +38,7 @@ ext {
     set('commonVersion', '3.1.4')
     set('springBootAdminVersion', '3.4.5')
     set('logstashLogbackEncoderVersion', '8.1')
-    set('springdocOpenapiVersion', '2.8.6')
+    set('springdocOpenapiVersion', '2.8.8')
 }
 
 dependencyManagement {
