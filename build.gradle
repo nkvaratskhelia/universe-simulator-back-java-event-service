@@ -18,6 +18,12 @@ java {
     }
 }
 
+idea {
+    module {
+        downloadJavadoc = true
+    }
+}
+
 repositories {
     mavenCentral()
     mavenLocal()
@@ -74,12 +80,6 @@ dependencies {
     testImplementation 'org.testcontainers:rabbitmq'
     testImplementation 'org.testcontainers:r2dbc'
     testImplementation 'io.projectreactor:reactor-test'
-}
-
-idea {
-    module {
-        downloadJavadoc = true
-    }
 }
 
 def coverageExclusions = [

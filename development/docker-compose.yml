@@ -4,13 +4,26 @@ services:
     image: postgres:17.5
     restart: always
     environment:
-      - POSTGRES_DB=event-service
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - 5433:5432
+      - "5433:5432"
     volumes:
       - event-service-postgres:/var/lib/postgresql/data
+    networks:
+      - universe-simulator
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d ${POSTGRES_DB} -U ${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   event-service-postgres:
+
+networks:
+  universe-simulator:
+    name: universe-simulator
+    driver: bridge
