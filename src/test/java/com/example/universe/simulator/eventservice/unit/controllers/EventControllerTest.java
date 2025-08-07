@@ -1,5 +1,7 @@
 package com.example.universe.simulator.eventservice.unit.controllers;
 
+import static org.mockito.BDDMockito.given;
+
 import com.example.universe.simulator.common.dtos.EventDto;
 import com.example.universe.simulator.eventservice.common.abstractions.AbstractWebFluxTest;
 import com.example.universe.simulator.eventservice.common.utils.TestUtils;
@@ -14,9 +16,6 @@ import reactor.test.StepVerifier;
 
 import java.time.Clock;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.mockito.BDDMockito.given;
 
 @WebFluxTest(EventController.class)
 class EventControllerTest extends AbstractWebFluxTest {
@@ -32,7 +31,7 @@ class EventControllerTest extends AbstractWebFluxTest {
         );
         List<EventDto> dtos = entities.stream()
             .map(item -> new EventDto(item.type(), item.data(), item.time()))
-            .collect(Collectors.toList());
+            .toList();
 
         given(service.getList()).willReturn(Flux.fromIterable(entities));
 
