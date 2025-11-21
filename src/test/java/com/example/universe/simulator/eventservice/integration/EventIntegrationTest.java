@@ -1,8 +1,11 @@
 package com.example.universe.simulator.eventservice.integration;
 
+import static org.awaitility.Awaitility.await;
+
 import com.example.universe.simulator.common.dtos.EventDto;
 import com.example.universe.simulator.eventservice.common.utils.TestUtils;
 import com.example.universe.simulator.eventservice.repositories.EventRepository;
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +14,6 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 import java.time.Clock;
-
-import static org.awaitility.Awaitility.await;
 
 class EventIntegrationTest extends AbstractIntegrationTest {
 
@@ -30,7 +31,7 @@ class EventIntegrationTest extends AbstractIntegrationTest {
         // ----------------------------------------should return empty list----------------------------------------
 
         // when
-        Flux<EventDto> result = webClient.get()
+        Flux<@NonNull EventDto> result = webClient.get()
             .uri("/events")
             .exchange()
             .returnResult(EventDto.class)

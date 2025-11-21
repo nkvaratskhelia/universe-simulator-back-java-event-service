@@ -1,9 +1,15 @@
 package com.example.universe.simulator.eventservice.unit.services;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.never;
+
 import com.example.universe.simulator.eventservice.common.utils.TestUtils;
 import com.example.universe.simulator.eventservice.entities.Event;
 import com.example.universe.simulator.eventservice.repositories.EventRepository;
 import com.example.universe.simulator.eventservice.services.EventService;
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,11 +21,6 @@ import reactor.test.StepVerifier;
 
 import java.time.Clock;
 import java.util.List;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.never;
 
 @ExtendWith(MockitoExtension.class)
 class EventServiceTest {
@@ -40,7 +41,7 @@ class EventServiceTest {
         given(repository.findAll()).willReturn(Flux.fromIterable(entities));
 
         // when
-        Flux<Event> result = service.getList();
+        Flux<@NonNull Event> result = service.getList();
 
         // then
         StepVerifier.create(result)
@@ -57,7 +58,7 @@ class EventServiceTest {
             .willReturn(Mono.just(entity));
 
         // when
-        Mono<Event> result = service.add(entity);
+        Mono<@NonNull Event> result = service.add(entity);
 
         // then
         StepVerifier.create(result)
@@ -77,7 +78,7 @@ class EventServiceTest {
         given(repository.save(entity)).willReturn(Mono.just(entity));
 
         // when
-        Mono<Event> result = service.add(entity);
+        Mono<@NonNull Event> result = service.add(entity);
 
         // then
         StepVerifier.create(result)

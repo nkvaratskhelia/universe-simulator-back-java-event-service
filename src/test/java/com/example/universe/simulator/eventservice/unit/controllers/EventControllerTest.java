@@ -8,8 +8,9 @@ import com.example.universe.simulator.eventservice.common.utils.TestUtils;
 import com.example.universe.simulator.eventservice.controllers.EventController;
 import com.example.universe.simulator.eventservice.entities.Event;
 import com.example.universe.simulator.eventservice.services.EventService;
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.webflux.test.autoconfigure.WebFluxTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
@@ -36,7 +37,7 @@ class EventControllerTest extends AbstractWebFluxTest {
         given(service.getList()).willReturn(Flux.fromIterable(entities));
 
         // when
-        Flux<EventDto> result = webClient.get()
+        Flux<@NonNull EventDto> result = webClient.get()
             .uri("/events")
             .exchange()
             .expectStatus().isOk()
