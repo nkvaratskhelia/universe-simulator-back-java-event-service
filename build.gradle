@@ -14,7 +14,7 @@ version = '1.0.0'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -41,7 +41,7 @@ repositories {
 }
 
 ext {
-    set('commonVersion', '3.4.0')
+    set('commonVersion', '3.4.4')
     set('springBootAdminVersion', '3.5.6')
     set('logstashLogbackEncoderVersion', '9.0')
     set('springdocOpenapiVersion', '3.0.0')
